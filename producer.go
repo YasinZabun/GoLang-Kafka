@@ -20,9 +20,9 @@ func produce() {
 	}
 	deliveryChan := make(chan kafka.Event, 10000)
 	topic := "test"
-	value := time.Now().String() + " Hello world!"
 	for true {
 		time.Sleep(1 * time.Second)
+		value := time.Now().String() + " Hello world!"
 		err = p.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: int32(rand.Intn(5))},
 			Value:          []byte(value)},
